@@ -1,0 +1,372 @@
+/* Keep all imports up top */
+@import "normalize";
+/* Plugins */
+@import "flatpickr";
+
+/* Vars */
+$black: #000000;
+$darkgrey: #979797;
+$white: #ffffff;
+$pink: #e7c8c5;
+$font: 'Work Sans', Ariel, sans-serif;
+$font-bold: 'Work Sans Bold', Ariel, sans-serif;
+$chap: 'Chap', Ariel, sans-serif;
+$chap-bold: 'Chap-Semibold', Ariel, sans-serif;
+$timing400: 400ms ease;
+
+/* Mixins */
+@mixin translateY($ty: translateY(-50%)){
+	-moz-transform: $ty;
+	-ms-transform: $ty;
+	-webkit-transform: $ty;
+	transform: $ty;
+}
+@mixin translateX($tx: translateX(-50%)){
+	-moz-transform: $tx;
+	-ms-transform: $tx;
+	-webkit-transform: $tx;
+	transform: $tx;
+}
+@mixin placeholder{
+	color:$black;
+	font-family:$font;
+	font-size:1.3rem;
+	letter-spacing:0.6px;
+	opacity:1;
+	position: relative;
+	top: -2px;
+}
+
+/* Styles */
+*{
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+}
+html {
+    font-size:62.5%;
+    line-height:1.325;
+}
+body {
+	font-size:13px;
+    font-size:1.3em;
+	margin: 0;
+	background-color: $white;
+}
+body,
+html{
+	height: 100%;
+	overflow: hidden;
+	width: 100%;
+}
+
+::-moz-selection{background:$pink;text-shadow:none;color:$black;}
+::selection{background:$pink;text-shadow:none;color:$black;}
+::-moz-selection a, ::-moz-selection p a{color:$black;}
+::selection a, ::selection p a{color:$black;}
+
+#container{
+
+}
+#container,
+main,
+.fullscreen{
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.mobile-hide{
+	display: block;
+
+	&.when{
+		display: flex;
+	}
+}
+.mobile-show{
+	display: none !important;
+}
+
+#header{
+	left: 0;
+	position: fixed;
+	top: 30px;
+	width: 100%;
+	z-index: 999; 
+	
+	h1{
+		background: black;
+		height: 102px;
+		left: 50%;
+		margin: 0;
+		position: absolute;
+		text-indent: -9999px;
+		width: 200px;
+		@include translateX;
+	}
+}
+
+.fullscreen{
+	background-image: url("/images/breakers-render.jpg");
+	background-repeat: no-repeat;
+	background-position: center 80px;
+	-moz-background-size: 83.33% auto;
+	-ms-background-size: 83.33% auto;
+	-webkit-background-size: 83.33% auto;
+	background-size: 83.33% auto;
+
+	h1{
+		color: $black;
+		font-family: $chap;
+		font-size: 10rem;
+		font-weight: normal;
+		left: 50px;
+		line-height: 1;
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		@include translateY;
+	}
+}
+
+#booking-tool{
+	bottom: 0;
+	height: 114px;
+	left: 0;
+	position: fixed;
+	width: 100%;
+
+	form{
+		background-color: $white;
+		border-top: 1px solid $darkgrey;
+		display: block;
+		height: 100%;
+		position: absolute;
+		width: 100%;
+		z-index: 499;
+	}
+}
+
+.booking-trigger{
+	background-color: $pink;
+	bottom: 20px;
+	cursor: pointer;
+	height: 75px;
+	position: fixed;
+	right: 50px;
+	width: 243px;
+	z-index: 999;
+
+	.btn{
+		color: $black;
+		font-family: $chap;
+		font-size: 1.4rem;
+		font-weight: normal;
+		letter-spacing: 3.5px;
+		line-height: 75px;
+		text-align: center;
+		text-transform: uppercase;
+		width: 100%;
+	}
+}
+
+#selection-drawer{
+	background-color: $white;
+	bottom: 0;
+	border: solid 1px #979797;
+	box-shadow: 0 -13px 16px 0 rgba(152, 152, 152, 0.5);
+	height: 366px;
+	position: fixed;
+	-moz-transform: translateY(271px);
+	-ms-transform: translateY(271px);
+	-webkit-transform: translateY(271px);
+	transform: translateY(271px);
+	-moz-transition: transform $timing400;
+	-ms-transition: transform $timing400;
+	-webkit-transition: transform $timing400;
+	transition: transform $timing400;
+	width: 100%;
+	z-index: 99;
+
+	&.open{
+		-moz-transform: translateY(-113px);
+		-ms-transform: translateY(-113px);
+		-webkit-transform: translateY(-113px);
+		transform: translateY(-113px);
+	}
+}
+
+.input-block{
+
+	&.flex{
+
+		.when{
+			display: flex;
+			flex-wrap: wrap;
+			width: 400px;
+
+			> *{
+				flex-grow: 1;
+			}
+		}
+	}
+}
+.when{
+	float: left;
+	margin: 17px 0 0 calc(8.33% - 80px);
+
+	label{
+		color: $black;
+		display: block;
+		font-family: $font;
+		font-size: 1.3rem;
+		line-height: 1;
+		margin: 0 0 8px;
+		width: 100%;
+	}
+	.input{
+		border-bottom: 1px solid $darkgrey;
+		border-left: 1px solid $darkgrey;
+		border-top: 1px solid $darkgrey;
+		max-width: 141px;
+		width: 100%;		
+
+		&:last-child{
+			border-left: 0 none;
+			border-right: 1px solid $darkgrey;
+			max-width: calc(100% - 211px);
+			width: 100%;
+		}
+	}
+	.break{
+		background-image: url("/images/arrow.svg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		-moz-background-size: 15px 11px;
+		-ms-background-size: 15px 11px;
+		-webkit-background-size: 15px 11px;
+		background-size: 15px 11px;
+		border-bottom: 1px solid $darkgrey;
+		border-top: 1px solid $darkgrey;
+		max-width: 70px;
+		min-width: 70px;
+	}
+	input{
+		background-color: transparent !important;
+		border: 0 none;
+		color: $black !important;
+		font-family: $chap;
+		font-size: 2rem;
+		height: 55px;
+		line-height: 55px;
+		outline: 0 none;
+		padding: 0 0 0 20px;
+		width: 100%;
+
+		&::-webkit-input-placeholder{
+			@include placeholder;
+		}
+		&:-moz-placeholder{
+			@include placeholder;
+		}
+		&::-moz-placeholder{
+			@include placeholder;
+		}
+		&:-ms-input-placeholder{
+			@include placeholder;
+		}
+	}
+}
+
+.guests{
+	float: left;
+	margin: 17px 0 0 40px;
+
+	label{
+		color: $black;
+		display: block;
+		font-family: $font;
+		font-size: 1.3rem;
+		line-height: 1;
+		margin: 0 0 8px;
+		width: 100%;
+	}
+	.fake-input{
+		border: 1px solid $darkgrey;
+		color: $black !important;
+		font-family: $chap;
+		font-size: 3.1rem;
+		height: 57px;
+		line-height: 50px;
+		text-align: center;
+		width: 102px;
+	}
+}
+
+.submit-button{
+	display: none;
+	visibility: hidden;
+}
+
+#guest-selector{
+	left: 600px;
+	position: absolute;
+	top: 33px;
+	width: 250px;
+
+	label{
+		color: $black;
+		cursor: default;
+		display: block;
+		font-family: $chap;
+		font-size: 2.5rem;
+		line-height: 1;
+		margin: 0 0 40px;
+		text-align: center;
+	}
+
+	.row{
+		margin-bottom: 12px;
+		text-align: right;
+
+		> div{
+			color: $black;
+			display: inline-block;
+			font-family: $chap;
+			font-size: 2.4rem;
+			line-height: 40px;
+			text-align: right;
+			vertical-align: top;
+		}
+		:nth-child(2){
+			text-align: left;
+			width: 125px;
+		}
+		.controls{
+			width: 90px;
+
+			div{
+				background-image: url("/images/plus.svg");
+				background-repeat: no-repeat;
+				-moz-background-size: 40px 40px;
+				-ms-background-size: 40px 40px;
+				-webkit-background-size: 40px 40px;
+				background-size: 40px 40px;
+				cursor: pointer;
+				display: block;
+				float: left;
+				height: 40px;
+				width: 40px;
+
+				&.disabled{
+
+				}
+				&:last-child{
+					background-image: url("/images/minus.svg");
+					margin-left: 10px;
+				}
+			}
+		}
+	}
+}

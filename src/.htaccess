@@ -1,0 +1,16 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+
+# Force trailing slash
+RewriteCond %{HTTP_HOST} ^montaukbreakers\.com [NC]
+RewriteRule (.*) http://www.montaukbreakers.com/$1 [L,R=301]
+
+# Force trailing slash
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*[^/])$ http://%{HTTP_HOST}/$1/ [L,R=301]
+
+# Route all traffic through index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
