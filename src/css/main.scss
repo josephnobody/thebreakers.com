@@ -10,6 +10,7 @@ $white: #ffffff;
 $pink: #e7c8c5;
 $font: 'Work Sans', Ariel, sans-serif;
 $font-bold: 'Work Sans Bold', Ariel, sans-serif;
+$avenir: 'Avenir-Book', Ariel, sans-serif;
 $chap: 'Chap', Ariel, sans-serif;
 $chap-bold: 'Chap-Semibold', Ariel, sans-serif;
 $timing400: 400ms ease;
@@ -93,10 +94,49 @@ main,
 	position: fixed;
 	top: 30px;
 	width: 100%;
-	z-index: 999; 
+	z-index: 999;
+
+	&:after{
+		background: $pink;
+		content: "";
+		height: 3px;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}
+
+	.social{
+		left: 50px;
+		position: absolute;
+		top: 20px;
+
+		a{
+			color: $black;
+			display: inline-block;
+			float: left;
+			font-family: $avenir;
+			font-size:1.4rem;
+			line-height: 1.43;
+			margin: 0 50px 0 0;
+			position: relative;
+			text-decoration: none;
+
+			&:after{
+				content: "";
+			}
+			&:hover:after{
+
+			}
+		}
+	} 
 	
 	h1{
-		background: black;
+		background: url("/images/logo.svg") no-repeat 0 0 transparent;
+		-moz-background-size: 200px 102px;
+		-ms-background-size: 200px 102px;
+		-webkit-background-size: 200px 102px;
+		background-size: 200px 102px;
 		height: 102px;
 		left: 50%;
 		margin: 0;
@@ -108,25 +148,36 @@ main,
 }
 
 .fullscreen{
-	background-image: url("/images/breakers-render.jpg");
+	background-image: url("/images/extended-hero.jpg");
 	background-repeat: no-repeat;
-	background-position: center 80px;
-	-moz-background-size: 83.33% auto;
-	-ms-background-size: 83.33% auto;
-	-webkit-background-size: 83.33% auto;
-	background-size: 83.33% auto;
+	background-position: right center;
+	-moz-background-size: 50% auto;
+	-ms-background-size: 50% auto;
+	-webkit-background-size: 50% auto;
+	background-size: 50% auto;
 
-	h1{
-		color: $black;
-		font-family: $chap;
-		font-size: 10rem;
-		font-weight: normal;
+	.text-align{
 		left: 50px;
-		line-height: 1;
-		margin: 0;
 		position: absolute;
 		top: 50%;
 		@include translateY;
+
+		h1{
+			color: $black;
+			font-family: $avenir;
+			font-size: 5rem;
+			font-weight: normal;
+			line-height: 1.12;
+			margin: 0;
+		}
+		p{
+			color: $black;
+			font-family: $font;
+			font-size: 1.4rem;
+			line-height: 1.43;
+			margin: 20px 0 0 3px;
+			max-width: 300px;
+		}
 	}
 }
 
@@ -160,7 +211,7 @@ main,
 
 	.btn{
 		color: $black;
-		font-family: $chap;
+		font-family: $avenir;
 		font-size: 1.4rem;
 		font-weight: normal;
 		letter-spacing: 3.5px;
@@ -174,7 +225,7 @@ main,
 #selection-drawer{
 	background-color: $white;
 	bottom: 0;
-	border: solid 1px #979797;
+	border-top: solid 1px #979797;
 	box-shadow: 0 -13px 16px 0 rgba(152, 152, 152, 0.5);
 	height: 366px;
 	position: fixed;
@@ -214,7 +265,7 @@ main,
 }
 .when{
 	float: left;
-	margin: 17px 0 0 calc(8.33% - 80px);
+	margin: 17px 0 0 50px;
 
 	label{
 		color: $black;
@@ -319,8 +370,8 @@ main,
 		color: $black;
 		cursor: default;
 		display: block;
-		font-family: $chap;
-		font-size: 2.5rem;
+		font-family: $avenir;
+		font-size: 2rem;
 		line-height: 1;
 		margin: 0 0 40px;
 		text-align: center;
@@ -333,8 +384,8 @@ main,
 		> div{
 			color: $black;
 			display: inline-block;
-			font-family: $chap;
-			font-size: 2.4rem;
+			font-family: $avenir;
+			font-size: 2rem;
 			line-height: 40px;
 			text-align: right;
 			vertical-align: top;
@@ -366,6 +417,217 @@ main,
 					background-image: url("/images/minus.svg");
 					margin-left: 10px;
 				}
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: 1100px){
+	.flatpickr-prev-month {
+	    left: -40px;
+	}
+	.flatpickr-next-month {
+	    right: -40px;
+	}
+	#guest-selector{
+		left: 470px;
+	}
+	.when{
+		margin: 17px 0 0 calc(8.33% - 40px);
+	}
+}
+
+@media screen and (max-width: 900px){
+	.mobile-show{ 
+		display: block !important; 
+
+		&.when{
+			display: flex !important;
+			left: 50%;
+			margin: 58px auto 0;
+			position: relative;
+			@include translateX;
+			width: 315px !important;
+
+			label{
+				margin: 0 0 11px;
+
+				span{
+					float: right;
+				}
+			}
+			.input{
+				max-width: calc(50% - 10px);
+				width: calc(50% - 10px);
+
+				&:last-child{
+					max-width: calc(50% - 10px);
+					width: calc(50% - 10px);					
+				}
+
+				input{
+					appearance: none;
+					-webkit-appearance: none;
+				}
+			}
+			.break{
+				width: 20px;
+				max-width: 20px;
+				min-width: 20px;
+			}
+		}
+	}
+	.mobile-hide{ 
+		display: none !important; 
+
+		&.when{
+			display: none;
+		}
+	}
+
+	.fullscreen{
+		&:after{
+			background-color: #f3eceb;
+			content: "";
+			height: 60px;
+			bottom: 0;
+			left:0;
+			position: absolute;
+			z-index: 400px;
+			width: 100%;
+		}
+	}
+	.close{
+		background: url("/images/close.svg") no-repeat 0 0 transparent;
+		-moz-background-size: 56px 56px;
+		-ms-background-size: 56px 56px;
+		-webkit-background-size: 56px 56px;
+		background-size: 56px 56px;
+		cursor: pointer;
+		left: 50%;
+		height: 56px;
+		position: absolute;
+		top: -28px;
+		width: 56px;
+		z-index: 501;
+		@include translateX;
+	}
+	.flatpickr-calendar{ display: none !important; }
+	.guests{ display: none !important; }
+
+	#booking-tool{
+		height: 442px;
+
+		-moz-transform: translateY(500px);
+		-ms-transform: translateY(500px);
+		-webkit-transform: translateY(500px);
+		transform: translateY(500px);
+		-moz-transition: transform 400ms ease;
+		-ms-transition: transform 400ms ease;
+		-webkit-transition: transform 400ms ease;
+		transition: transform 400ms ease;
+
+		&.open{
+			-moz-transform: translateY(35px);
+			-ms-transform: translateY(35px);
+			-webkit-transform: translateY(35px);
+			transform: translateY(35px);
+		}
+	}
+	#selection-drawer{
+		border: 0 none;
+		box-shadow: none;
+		position: absolute;
+		-moz-transform: translateY(96px);
+		-ms-transform: translateY(96px);
+		-webkit-transform: translateY(96px);
+		transform: translateY(96px);
+		z-index: 500;
+
+		&.open{
+			-moz-transform: translateY(96px);
+			-ms-transform: translateY(96px);
+			-webkit-transform: translateY(96px);
+			transform: translateY(96px);
+		}
+	}
+	#guest-selector{
+		left: 50%;
+		top: 0;
+		width: 315px;
+		@include translateX;
+
+		label{
+			color: $black;
+		    display: block;
+		    font-family: $font;
+		    font-size: 1.3rem;
+		    line-height: 1;
+		    text-align: left;
+		    margin: 0 0 11px;
+		    width: 100%;
+		}	
+
+		.row{
+			display: flex;
+
+			> *{
+				flex-grow: 1;
+			}
+			:nth-child(2){
+				margin-left:10px;
+				width: 100%;
+			}
+			.controls{
+				max-width: 90px;
+				min-width: 90px;
+			}
+		}
+	}
+
+	.booking-trigger{
+		left: 50%;
+		max-width: 315px;
+		right: auto;
+		width: 100%;
+		@include translateX;
+
+		.btn{
+		}
+	}
+}
+
+@media screen and (max-width: 767px){
+	.social{ display: none !important; }
+	#header{
+		h1{
+			-moz-background-size: 150px 76px;
+			-ms-background-size: 150px 76px;
+			-webkit-background-size: 150px 76px;
+			background-size: 150px 76px;
+			height:76px;
+			width: 150px;
+		}
+	}
+	.fullscreen{
+		background-image: url("/images/breakers-mobile-hero.jpg");
+		-moz-background-size: 100% auto;
+		-ms-background-size:  100% auto;
+		-webkit-background-size:  100% auto;
+		background-size:  100% auto;
+		background-position: center 60px;
+
+		.text-align{
+			left: 20px;
+			top: auto;
+			bottom: 70px;
+
+			h1{
+				font-size: 3.3rem;
+			}
+			p{
+				display: none !important;
 			}
 		}
 	}

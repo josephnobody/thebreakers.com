@@ -18,6 +18,7 @@ const HomePage = Barba.BaseView.extend({
 		let drawer = document.getElementById("selection-drawer");
 		let count = document.getElementById("count");
 		let form = document.getElementById("booking") as HTMLFormElement;
+		let bookingTool = document.getElementById("booking-tool");
 
 		startDate.parentElement.addEventListener("click", openDrawer);
 		endDate.parentElement.addEventListener("click", openDrawer);
@@ -107,26 +108,46 @@ const HomePage = Barba.BaseView.extend({
 			}
 		});
 
+		let close = document.getElementById("close");
+		let bookNow = document.getElementById("book-now");
+
+		close.addEventListener("click", function(){
+			bookNow.textContent = "Search Now";
+
+			bookingTool.classList.remove("open");
+		});
 
 		// Book Now
-		let bookNow = document.getElementById("book-now");
+
+		if(window.innerWidth <= 900){
+			bookNow.textContent = "Search Now";
+		}
 
 		bookNow.addEventListener("click", function(){
 			let error = false;
 
-			// remove error state
+			if(bookNow.textContent === "Search Now" && window.innerWidth <= 900){
+				bookingTool.className += " open";
+				bookNow.textContent = "Book Now";
+			} else if(bookNow.textContent === "Book Now" || window.innerWidth > 900) {
+				bookingTool.classList.remove("open");
 
-			if(startDate.value == null || startDate.value == undefined || startDate.value == ""){
-				error = true;
-			}
-			if(endDate.value == null || endDate.value == undefined || endDate.value == ""){
-				error = true;
-			}
+				// remove error state
 
-			if(error == false){
-				form.submit();
-			} else {
-				// show error state
+				if(window.innerWidth > 900){
+					if(startDate.value == null || startDate.value == undefined || startDate.value == ""){
+						error = true;
+					}
+					if(endDate.value == null || endDate.value == undefined || endDate.value == ""){
+						error = true;
+					}
+				}
+
+				if(error == false){
+					form.submit();
+				} else {
+					// show error state
+				}	
 			}
 		});
 	}

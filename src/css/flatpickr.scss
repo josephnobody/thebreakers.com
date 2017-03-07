@@ -6,6 +6,7 @@ $grey: #a0ad97;
 $disabled: rgba(57,57,57,0.3);
 $font: 'Work Sans', Ariel, sans-serif;
 $font-bold: 'Work Sans Bold', Ariel, sans-serif;
+$avenir: 'Avenir-Book', Ariel, sans-serif;
 $chap: 'Chap', Ariel, sans-serif;
 $chap-bold: 'Chap-Semibold', Ariel, sans-serif;
 
@@ -81,8 +82,8 @@ $chap-bold: 'Chap-Semibold', Ariel, sans-serif;
 		color: $black;
 		cursor: default;
 		display: inline-block;
-		font-family: $chap;
-		font-size: 2.5rem;
+		font-family: $avenir;
+		font-size: 2rem;
 		line-height: 1;
 		margin: 0 0 0 8px;
 	}
@@ -94,8 +95,8 @@ $chap-bold: 'Chap-Semibold', Ariel, sans-serif;
 		.cur-year{
 			border: 0 none;
 			color: $black;
-			font-family: $chap;
-			font-size: 2.5rem;
+			font-family: $avenir;
+			font-size: 2rem;
 			line-height: 1;
 			width: 100%;
 		}
@@ -161,8 +162,8 @@ $chap-bold: 'Chap-Semibold', Ariel, sans-serif;
 	cursor: pointer;
 	display: inline-block;
 	flex-basis: 14.2857143%;
-	font-family: $chap;
-	font-size: 2rem;
+	font-family: $avenir;
+	font-size: 1.5rem;
 	justify-content: center;
 	letter-spacing: 0.4px;
 	line-height: 37px;
@@ -187,11 +188,6 @@ $chap-bold: 'Chap-Semibold', Ariel, sans-serif;
 	}
 	&.prevMonthDay{
 		background: $white;
-
-		&.disabled{
-			visibility: hidden;
-			pointer-events: none;
-		}
 	}
 	&.startRange{
 		background: $green;

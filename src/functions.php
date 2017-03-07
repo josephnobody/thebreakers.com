@@ -13,7 +13,7 @@ if($slug !== ""){
 /* ==================================================
   Globals - Edit these when you need them
 ================================================== */
-define("SITE_NAME", "Site Name");
+define("SITE_NAME", "Montauk Breakers");
 
 $site_title = SITE_NAME . $site_title;
 

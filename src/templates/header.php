@@ -28,6 +28,18 @@
 <link href="/css/main.css" rel="stylesheet" />
 <script src="/js/main.js" type="text/javascript" async></script>
 <style type="text/css">
+@font-face{
+  font-family:'Avenir-Book';
+  src: url('/fonts/Avenir-Book.eot');
+  src: url('/fonts/Avenir-Book.woff2') format('woff2'),
+       url('/fonts/Avenir-Book.woff') format('woff'),
+       url('/fonts/Avenir-Book.ttf') format('truetype'),
+       url('/fonts/Avenir-Book.svg#Avenir-Book') format('svg'),
+       url('/fonts/Avenir-Book.eot?#iefix') format('embedded-opentype');
+  font-weight:normal;
+  font-style:normal;
+  font-stretch:normal;
+}
 @font-face {
 	font-family: 'Chap';
 	src: url('/fonts/Chap-Regular.eot');
@@ -54,6 +66,10 @@
 <body>
 <div id="container" class="group">
 	<header id="header" class="group">
+		<div class="social group">
+			<a href="https://www.instagram.com/explore/locations/270323795/breakers-at-montauk/" target="_blank">instagram</a>
+			<a href="https://www.facebook.com/BreakersAtMontauk/" target="_blank">facebook</a>
+		</div>
     	<h1 id="branding">Breakers</h1>
   	</header>
 

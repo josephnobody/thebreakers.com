@@ -1,5 +1,6 @@
 <section id="booking-tool" class="group">
 
+	<div class="close mobile-show" id="close"></div>
 	<form id="booking" action="https://res.windsurfercrs.com/ibe/index.aspx" method="get">
 		<div class="input-block hidden">
 			<input type="hidden" name="propertyID" value="14938" />
@@ -16,8 +17,8 @@
 				</div>
 			</div>
 			<div class="mobile-show when">
+				<label for="arrival">Arrival <span>Departure</span></label>
 				<div class="input">
-					<label for="arrival">When</label>
 					<input id="arrival" type="date" name="arrival-date" placeholder="Arrival" value="" />
 				</div>
 				<div class="break"></div>

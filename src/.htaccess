@@ -14,3 +14,111 @@ RewriteRule ^(.*[^/])$ http://%{HTTP_HOST}/$1/ [L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
+
+
+# Turn off all directory indexes
+Options All -indexes
+
+# use utf-8 encoding for anything served text/plain or text/html
+AddDefaultCharset utf-8
+
+# force utf-8 for a number of file formats
+AddCharset utf-8 .html .css .js .xml .json .rss
+
+# HTC Files (for IE hacks)
+AddType text/x-component .htc
+
+# MIME TYPES
+# Audio
+AddType audio/aac .aac
+AddType audio/mp4 .mp4 .m4a
+AddType audio/mpeg .mp1 .mp2 .mp3 .mpg .mpeg
+AddType audio/ogg .oga .ogg
+AddType audio/wav .wav
+AddType audio/webm .webm
+
+# Video
+AddType video/mp4 .mp4 .m4v
+AddType video/ogg .ogv
+AddType video/webm .webm
+
+# Webfonts
+AddType application/vnd.ms-fontobject eot
+AddType font/ttf                      ttf
+AddType font/otf                      otf
+AddType font/x-woff                   woff
+
+# Appcache
+AddType text/cache-manifest .appcache
+
+# Force the latest IE version, in various cases when it may fall back to IE7 mode
+<IfModule mod_setenvif.c>
+     <IfModule mod_headers.c>
+          BrowserMatch MSIE ie
+          Header set X-UA-Compatible "IE=Edge,chrome=1" env=ie
+     </IfModule>
+</IfModule>
+
+# Kill ETags
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+
+FileETag None
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access plus 2 month"
+ExpiresByType image/gif "access plus 2 month"
+ExpiresByType image/jpeg "access plus 2 month"
+ExpiresByType image/png "access plus 2 month"
+ExpiresByType image/svg+xml "access plus 2 month"
+ExpiresByType text/css "access 2 month"
+ExpiresByType application/x-javascript "access plus 2 month"
+ExpiresByType text/javascript "access plus 2 month"
+ExpiresByType application/javascript "access plus 2 month"
+ExpiresByType image/x-icon "access plus 12 month"
+ExpiresByType image/icon "access plus 12 month"
+ExpiresByType application/x-ico "access plus 12 month"
+ExpiresByType application/ico "access plus 12 month"
+ExpiresDefault "access plus 2 days"
+</IfModule>
+## EXPIRES CACHING ##
+
+# Compression
+<IfModule mod_deflate.c>
+
+    # Force compression for mangled headers.
+    <IfModule mod_setenvif.c>
+        <IfModule mod_headers.c>
+            SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+            RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+        </IfModule>
+    </IfModule>
+
+    # Compress all output labeled with one of the following MIME-types
+    # (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
+    #  and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines
+    #  as `AddOutputFilterByType` is still in the core directives).
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE application/atom+xml \
+                                      application/javascript \
+                                      application/json \
+                                      application/rss+xml \
+                                      application/vnd.ms-fontobject \
+                                      application/x-font-ttf \
+                                      application/x-web-app-manifest+json \
+                                      application/xhtml+xml \
+                                      application/xml \
+                                      font/opentype \
+                                      image/svg+xml \
+                                      image/x-icon \
+                                      text/css \
+                                      text/html \
+                                      text/plain \
+                                      text/x-component \
+                                      text/xml
+    </IfModule>
+
+</IfModule>
