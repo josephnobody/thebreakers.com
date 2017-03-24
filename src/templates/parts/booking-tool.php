@@ -58,6 +58,9 @@
 				</div>
 			</div>
 		</div>
+		<div id="error-state" class="group">
+			<p>Please input your dates and guest count.</p>
+		</div>
 	</div>
 
 </section>

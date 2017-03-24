@@ -19,6 +19,7 @@ const HomePage = Barba.BaseView.extend({
 		let count = document.getElementById("count");
 		let form = document.getElementById("booking") as HTMLFormElement;
 		let bookingTool = document.getElementById("booking-tool");
+		let bookNow = document.getElementById("book-now");
 
 		startDate.parentElement.addEventListener("click", openDrawer);
 		endDate.parentElement.addEventListener("click", openDrawer);
@@ -28,7 +29,7 @@ const HomePage = Barba.BaseView.extend({
 		page.addEventListener("click", function(event){
 			let target = event.target as HTMLElement;
 			
-			if(!drawer.contains(target) && target !== startDate && target !== endDate && target !== count){
+			if(!drawer.contains(target) && target !== startDate && target !== endDate && target !== count && target !== bookNow){
 				drawer.classList.remove("open");
 			}
 		});
@@ -62,8 +63,14 @@ const HomePage = Barba.BaseView.extend({
 			} else {
 				adultTxt.textContent = "adult";
 			}
+			if(adultNum + childNum === 6){
+				adultPlus.className = "disabled";
+				childPlus.className = "disabled";
+			}
 		});
 		adultMinus.addEventListener("click", function(){
+			adultPlus.classList.remove("disabled");
+			childPlus.classList.remove("disabled");
 			if(adultNum > 1){
 				adultNum--;
 				adultNumElem.textContent = adultNum.toString();
@@ -90,8 +97,14 @@ const HomePage = Barba.BaseView.extend({
 			} else {
 				childTxt.textContent = "children";
 			}
+			if(adultNum + childNum === 6){
+				adultPlus.className = "disabled";
+				childPlus.className = "disabled";
+			}
 		});
 		childMinus.addEventListener("click", function(){
+			adultPlus.classList.remove("disabled");
+			childPlus.classList.remove("disabled");
 			if(childNum > 0){
 				childNum--;
 				childNumElem.textContent = childNum.toString();
@@ -109,7 +122,8 @@ const HomePage = Barba.BaseView.extend({
 		});
 
 		let close = document.getElementById("close");
-		let bookNow = document.getElementById("book-now");
+		let arrival = document.getElementById("arrival") as HTMLInputElement;
+		let departure = document.getElementById("departure") as HTMLInputElement;
 
 		close.addEventListener("click", function(){
 			bookNow.textContent = "Search Now";
@@ -123,6 +137,27 @@ const HomePage = Barba.BaseView.extend({
 			bookNow.textContent = "Search Now";
 		}
 
+		function getFormattedDate(date) {
+			var year = date.getFullYear();
+			var month = (1 + date.getMonth()).toString();
+			month = month.length > 1 ? month : '0' + month;
+			var day = date.getDate().toString();
+			day = day.length > 1 ? day : '0' + day;
+			return month + '/' + day + '/' + year;
+		}
+
+		arrival.addEventListener("change", function(){
+			let input = new Date(arrival.value);
+			startDate.setAttribute("value", getFormattedDate(input));
+		});
+
+		departure.addEventListener("change", function(){
+			let input = new Date(departure.value);
+			endDate.setAttribute("value", getFormattedDate(input));
+		});
+
+		let errorState = document.getElementById("error-state");
+
 		bookNow.addEventListener("click", function(){
 			let error = false;
 
@@ -133,6 +168,7 @@ const HomePage = Barba.BaseView.extend({
 				bookingTool.classList.remove("open");
 
 				// remove error state
+				errorState.classList.remove("show");
 
 				if(window.innerWidth > 900){
 					if(startDate.value == null || startDate.value == undefined || startDate.value == ""){
@@ -147,6 +183,8 @@ const HomePage = Barba.BaseView.extend({
 					form.submit();
 				} else {
 					// show error state
+					openDrawer();
+					errorState.className += " show";
 				}	
 			}
 		});
